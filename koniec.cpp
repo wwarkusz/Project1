@@ -1,72 +1,41 @@
-#include "pagaia.h"
+#include <fstream>
+#include "koniec.h"
 
-pagaia::pagaia() {
-
-	teksturaPaletki.loadFromFile("aaa.png");
-	paletka.setTexture(teksturaPaletki);
-	paletka.setTextureRect(sf::IntRect(0, 0, 120, 45));
-	paletka.setPosition(400, 700);
-
-	teksturaPilki.loadFromFile("bbb.png");
-	pilka.setTexture(teksturaPilki);
-	pilka.setTextureRect(sf::IntRect(0, 0, 50, 50));
-	pilka.setPosition(400, 500);
-
-
-	teksturaKwadratow.loadFromFile("ccc.png");
-	for (int i = 0; i < 24; i++) {
-		kwadrat[i].setTexture(teksturaKwadratow);
-		kwadrat[i].setTextureRect(sf::IntRect(0, 0, 50, 50));
-	}
-	for (int i = 0; i < 7; i++) {
-		kwadrat[i].setPosition(i * 70, 20);
-	}
-	for (int i = 7; i < 13; i++) {
-		kwadrat[i].setPosition((i - 6) * 70, 90);
+koniec::koniec() { //definicja konstruktora
+	if (!ksztaltLiter.loadFromFile("czcionka.otf")) { //czcionka
+		std::cout << "literki sie popsuly\n";
 	}
 
+	end.setFont(ksztaltLiter); //ustawianie czcionki
+	end.setFillColor(sf::Color::Magenta); //kolor
+	end.setCharacterSize(80); //rozmiar
+	end.setString("Mamma mia"); //napis
+	end.setPosition(350, 200); //pozycja
+
+	END.setFont(ksztaltLiter);
+	END.setFillColor(sf::Color::White);
+	END.setCharacterSize(30);
+	END.setString("Space - Menu");
+	END.setPosition(490, 300);
+
+	PRZEGRANE.setFont(ksztaltLiter);
+	PRZEGRANE.setFillColor(sf::Color::Magenta);
+	PRZEGRANE.setCharacterSize(45);
+	PRZEGRANE.setPosition(950, 730);
+	std::fstream plik("przegrane.txt"); //czytanie pliku
+	plik >> przegrane;
+	plik.close();
+	PRZEGRANE.setString("Perso: " + std::to_string(przegrane));
+
+	tlo1.loadFromFile("tlo3.jpg"); //ladowanie obrazka 
+	tlo11.setTexture(tlo1); //ustawianie tekstury
+	tlo11.setTextureRect(sf::IntRect(0, 0, 1200, 800)); //wielkossc
+	tlo11.setPosition(0, 0); //pozycja
 }
 
-void pagaia::draw(sf::RenderWindow& window) {
-	window.draw(paletka);
-	window.draw(pilka);
-	for (int i = 0; i < 24; i++) {
-		window.draw(kwadrat[i]);
-	}
-}
-
-void pagaia::Prawo() {
-	if (paletka.getPosition().x < 1000) {
-		paletka.move(10, 0);
-	}
-}
-
-void pagaia::Lewo() {
-	if (paletka.getPosition().x > 0) {
-		paletka.move(-10, 0);
-	}
-}
-
-void pagaia::Ruch() {
-	pilka.move(dx, dy);
-	if (pilka.getPosition().x >= 1000) {
-		dx = -dx;
-	}
-	if (pilka.getPosition().x <= 0) {
-		dx = -dx;
-	}
-	if (pilka.getPosition().y <= 0) {
-		dy = -dy;
-	}
-	if (pilka.getPosition().y >= 700) {
-		dy = -dy;
-	}
-}
-
-void pagaia::odbijanie() {
-	sf::IntRect niewidzialneGowno(pilka.getPosition().x, pilka.getPosition().y, 50, 50);
-	sf::IntRect niewidzialnyKwadrat(paletka.getPosition().x, paletka.getPosition().y, 120, 45);
-	if (niewidzialneGowno.intersects(niewidzialnyKwadrat)) {
-		dy = -dy;
-	}
+void koniec::draw(sf::RenderWindow& window) { //funkcja do rysowania
+	window.draw(tlo11);
+	window.draw(end);
+	window.draw(END);
+	window.draw(PRZEGRANE);
 }

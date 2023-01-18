@@ -1,7 +1,7 @@
 #include "opzioni.h"
 
 opzioni::opzioni() {
-	if (!ksztaltLiter.loadFromFile("czcionka.otf")) {//pamietac zeby zmienic nazwe liter
+	if (!ksztaltLiter.loadFromFile("czcionka.otf")) {
 		std::cout << "literki sie popsuly\n";
 	}
 
@@ -9,16 +9,22 @@ opzioni::opzioni() {
 	Opcje[0].setFillColor(sf::Color::White);
 	Opcje[0].setCharacterSize(75);
 	Opcje[0].setString("Facile");
-	Opcje[0].setPosition(400, 200);
+	Opcje[0].setPosition(470, 200);
 
 	Opcje[1].setFont(ksztaltLiter);
 	Opcje[1].setFillColor(sf::Color::Magenta);
 	Opcje[1].setCharacterSize(75);
 	Opcje[1].setString("Difficile");
-	Opcje[1].setPosition(400, 300);
+	Opcje[1].setPosition(440, 300);
+
+	tlo3.loadFromFile("tlo1.jpg");
+	tlo33.setTexture(tlo3);
+	tlo33.setTextureRect(sf::IntRect(0, 0, 1200, 800));
+	tlo33.setPosition(0, 0);
 }
 
 void opzioni::draw(sf::RenderWindow& window) {
+	window.draw(tlo33);
 	window.draw(Opcje[0]);
 	window.draw(Opcje[1]);
 }

@@ -2,26 +2,18 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-
-class pagaia
+class wygrana
 {
 public:
-	pagaia();
-	void draw(sf::RenderWindow& window);
-	void Prawo();
-	void Lewo();
-	float dx, dy;
-	void Ruch();
-	void odbijanie();
-
+	wygrana(); //konstruktor
+	void draw(sf::RenderWindow& window); //do rysowania
+	int wygrane; //zmienna wygrane do odczytywania z pliku
 private:
+	sf::Font ksztaltLiter; //do czcionki
+	sf::Text win; //do tekstu
+	sf::Text WIN;
+	sf::Text WYGRANE;
 
-	sf::Texture teksturaPaletki;
-	sf::Sprite paletka;
-
-	sf::Texture teksturaPilki;
-	sf::Sprite pilka;
-
-	sf::Texture teksturaKwadratow;
-	sf::Sprite kwadrat[24];
+	sf::Texture tlo5; //tekstura
+	sf::Sprite tlo55; //i sprite
 };

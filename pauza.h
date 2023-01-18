@@ -2,26 +2,16 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-
-class pagaia
+class pauza
 {
 public:
-	pagaia();
-	void draw(sf::RenderWindow& window);
-	void Prawo();
-	void Lewo();
-	float dx, dy;
-	void Ruch();
-	void odbijanie();
+	void draw(sf::RenderWindow& window); //do rysowania
+	pauza(); //konstruktor
 
 private:
+	sf::RectangleShape rectangle; //tworzenie prostokata
 
-	sf::Texture teksturaPaletki;
-	sf::Sprite paletka;
-
-	sf::Texture teksturaPilki;
-	sf::Sprite pilka;
-
-	sf::Texture teksturaKwadratow;
-	sf::Sprite kwadrat[24];
+	sf::Font ksztaltLiter; //do czcionki
+	sf::Text stop; //do tekstu
 };
+

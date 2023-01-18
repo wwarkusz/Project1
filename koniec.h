@@ -2,18 +2,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class opzioni
+class koniec
 {
 public:
-	opzioni();
-	void draw(sf::RenderWindow& window);
-	void Gora();
-	void Dol();
-
-	int opcjaChoosen = 0;
-
+	koniec(); //konstruktor
+	void draw(sf::RenderWindow& window); //funkcja do rysowania
+	int przegrane; //zmienna przegrane do odczytywania z pliku
 private:
+	sf::Font ksztaltLiter; //do czcionki
+	sf::Text end; //do robienia tekstu
+	sf::Text END;
+	sf::Text PRZEGRANE;
 
-	sf::Font ksztaltLiter;
-	sf::Text Opcje[2];
+	sf::Texture tlo1; //tekstura
+	sf::Sprite tlo11; //i sprite
 };
+
